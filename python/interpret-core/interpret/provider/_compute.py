@@ -17,7 +17,7 @@ class JobLibProvider(ComputeProvider):
         self.n_jobs = n_jobs
 
     def parallel(self, compute_fn, compute_args_iter):
-        return Parallel(n_jobs=self.n_jobs)(
+        return Parallel(n_jobs=self.n_jobs, backend="threading")(
             delayed(compute_fn)(*args) for args in compute_args_iter
         )
 
